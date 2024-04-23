@@ -17,3 +17,7 @@ input{
     visibility: hidden;
     margin-top: -250px;
 }
+
+.container{
+    width: 500px;
+}

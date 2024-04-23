@@ -4,7 +4,6 @@ let btn2 = document.querySelector(".btn2");
 
 
 let cal1 = document.querySelector(".basic-calculator");
-
 let cal2 = document.querySelector(".scientific-calculator");
 
 
@@ -14,7 +13,6 @@ btn1.addEventListener("click", ()=>{
     }
     if(cal1.style.visibility =="hidden"){
         cal1.style.visibility ="visible";
-        cal2.style.marginBottom= "50px";
     }
 })
 
@@ -22,5 +20,63 @@ btn2.addEventListener("click", ()=>{
 
     cal1.style.visibility ="hidden";
     cal2.style.visibility ="visible";
-    cal2.style.marginTop= "-300px";
+    cal2.style.marginTop= "-250px";
 })
+
+
+
+let display = document.querySelector(".container input");
+let btns = document.querySelectorAll(".basic-calculator button, .scientific-calculator button");
+
+
+
+function evaluateResult(){
+    console.log(currValue);
+
+    const convertedValue = currValue
+    .replace("%", "*0.01")
+    .replace("cos", "Math.cos")
+    .replace("sin", "Math.sin")
+    .replace("tan", "Math.tan")
+    .replace("π", "Math.PI")
+    .replace("e", "2.7182818284590")
+    .replace("log", "Math.log")
+    .replace("√", "Math.sqrt" );
+
+
+    const result = eval(convertedValue);
+    console.log(result);
+    currValue = result.toString();
+    display.value = currValue;
+}
+
+
+let currValue ="";
+
+for(let i=0; i<btns.length; i++){
+    const btn = btns[i];
+    btn.addEventListener("click", ()=>{
+        const value = btn.innerText;
+        
+        if(value == "AC"){
+            currValue = "";
+            display.value = currValue;
+        }
+
+        
+        else if(value.length == 0){
+           currValue = currValue.slice(0,-1);
+           display.value = currValue;
+        }
+
+        else if(value == "="){
+            evaluateResult();
+        }
+
+        else {
+        currValue += value;
+        display.value = currValue;
+        }
+
+    })
+}
