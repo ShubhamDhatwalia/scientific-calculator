@@ -41,13 +41,31 @@ function evaluateResult(){
     .replace("π", "Math.PI")
     .replace("e", "2.7182818284590")
     .replace("log", "Math.log")
-    .replace("√", "Math.sqrt" );
+    .replace("√", "Math.sqrt" )
+    .replace("EXP", "Math.exp");
+
+    if(currValue.includes("^")){
+        
+        console.log("Yes entered in the condition");
+
+        let arr = currValue.split("^");
+        console.log(arr);
+
+        let x = arr[0];
+        let y = arr[1];
+
+        let result = Math.pow(x,y);
+        console.log(result);
+        display.value = result;
+    }
 
 
+    else{
     const result = eval(convertedValue);
     console.log(result);
     currValue = result.toString();
     display.value = currValue;
+    }
 }
 
 
@@ -72,9 +90,21 @@ for(let i=0; i<btns.length; i++){
         else if(value == "="){
             evaluateResult();
         }
+        else if(value == "Ans"){
+            evaluateResult();
+        }
 
+        else if(value ==  "Xy"){
+            
+            currValue += "^";
+            console.log(currValue);
+            display.value = currValue;
+        }
+        
         else {
         currValue += value;
+        
+        currValue.replace("EXP", "e");
         display.value = currValue;
         }
 
