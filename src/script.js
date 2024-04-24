@@ -46,10 +46,8 @@ function evaluateResult(){
 
     if(currValue.includes("^")){
         
-        console.log("Yes entered in the condition");
 
         let arr = currValue.split("^");
-        console.log(arr);
 
         let x = arr[0];
         let y = arr[1];
@@ -59,6 +57,21 @@ function evaluateResult(){
         display.value = result;
     }
 
+    else if(currValue.includes("EXP")){
+        let arr = currValue.split("EXP");
+        let x = arr[0];
+        let y = arr[1];
+
+        let result =x;
+
+        for(let i=0; i<y; i++){
+            result += "0";
+        }
+        console.log(result);
+        display.value = result;
+
+    }
+    
 
     else{
     const result = eval(convertedValue);
@@ -104,8 +117,6 @@ for(let i=0; i<btns.length; i++){
         
         else {
         currValue += value;
-        
-        currValue.replace("EXP", "e");
         display.value = currValue;
         }
 
