@@ -75,7 +75,8 @@ for(let i=0; i<btns.length; i++){
     const btn = btns[i];
     btn.addEventListener("click", ()=>{
         const value = btn.innerText;
-        
+
+    try{
         if(value == "AC"){
             currValue = "";
             display.value = currValue;
@@ -107,6 +108,11 @@ for(let i=0; i<btns.length; i++){
         currValue.replace("EXP", "e");
         display.value = currValue;
         }
+
+    } catch(error){
+        currValue = "ERROR";
+        display.value = currValue;
+    }
 
     })
 }
